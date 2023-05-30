@@ -25,5 +25,10 @@ module.exports = (sequelize) => {
             allowNull: false,
             default: DataTypes.NOW
         },
+        tags: {
+            type: DataTypes.ARRAY(Sequelize.STRING),
+            allowNull: true,
+            defaultValue: []
+        }
     });
 };
