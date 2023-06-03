@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
             type: DataTypes.Data,
             allowNull: false,
             default: DataTypes.NOW
-        }
+        },
         editedAt: {
             type: DataTypes.Data,
             allowNull: false,
