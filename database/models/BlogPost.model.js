@@ -16,17 +16,17 @@ module.exports = (sequelize) => {
             allowNull: false
         },
         publishedAt: {
-            type: DataTypes.Data,
+            type: DataTypes.DATE,
             allowNull: false,
             default: DataTypes.NOW
         },
         editedAt: {
-            type: DataTypes.Data,
+            type: DataTypes.DATE,
             allowNull: false,
             default: DataTypes.NOW
         },
         tags: {
-            type: DataTypes.ARRAY(Sequelize.STRING),
+            type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: true,
             defaultValue: []
         }
