@@ -37,3 +37,5 @@ class BlogPostStore {
         return await this.BlogPost.findAll();
     }
 }
+
+module.exports = BlogPostStore;
