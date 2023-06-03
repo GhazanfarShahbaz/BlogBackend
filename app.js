@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
 app.get("/getAllBlogPosts", async (req, res) => {
     const blogPostStore = new BlogPostStore(sequelize);
     const blogPosts = await blogPostStore.getAll();
-    
+
     res.json(blogPosts);
 });
 
@@ -35,23 +35,33 @@ app.get("/getBlogPost/:id", async (req, res) => {
 
 
 app.post('/addBlogPost', async (req, res) => {
-    const { title, content, tags } = req.body;
+    const { title, content, tags, password } = req.body;
 
-    const blogPostStore = new BlogPostStore(sequelize);
-    const newBlogPost = await blogPostStore.insert(title, content, tags);
+    if (password !== process.env.PASSWORD) {
+        return res.status(401).json({ message: 'Invalid password' });
+    }
+    else { 
+        const blogPostStore = new BlogPostStore(sequelize);
+        const newBlogPost = await blogPostStore.insert(title, content, tags);
 
-    res.json(newBlogPost);
+        res.json(newBlogPost);
+    }
 });
 
 
 app.put('/updateBlogPost/:id', async (req, res) => {
     const id = req.params.id;
-    const { title, content, tags } = req.body;
+    const { title, content, tags, password } = req.body;
 
-    const blogPostStore = new BlogPostStore(sequelize);
-    const updatedBlogPost = await blogPostStore.update(id, title, content, tags);
+    if (password !== process.env.PASSWORD) {
+        return res.status(401).json({ message: 'Invalid password' });
+    }
+    else{
+        const blogPostStore = new BlogPostStore(sequelize);
+        const updatedBlogPost = await blogPostStore.update(id, title, content, tags);
 
-    res.json(updatedBlogPost);
+        res.json(updatedBlogPost);
+    }
 });
 
 
